@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Reshape The Fitness Club | Ballia</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#070707;
+color:#fff;
+overflow-x:hidden
+}
+:root{
+--red:#ff3b0a;
+--orange:#ff6a00;
+--dark:#080808;
+--card:#111;
+--gray:#999;
+--line:#252525
+}
+a{text-decoration:none;color:inherit}
+button,input,select{font:inherit}
+
+/* NAV */
+nav{
+position:fixed;
+top:0;
+width:100%;
+z-index:1000;
+background:rgba(5,5,5,.88);
+backdrop-filter:blur(15px);
+border-bottom:1px solid #222
+}
+.nav{
+max-width:1200px;
+margin:auto;
+height:72px;
+padding:0 25px;
+display:flex;
+align-items:center;
+justify-content:space-between
+}
+.logo{
+font-size:23px;
+font-weight:1000;
+letter-spacing:-1px
+}
+.logo span{color:var(--red)}
+.navlinks{
+display:flex;
+align-items:center;
+gap:25px
+}
+.navlinks a{
+font-size:14px;
+font-weight:bold;
+transition:.3s
+}
+.navlinks a:hover{color:var(--red)}
+.navbtn{
+background:linear-gradient(135deg,var(--red),var(--orange));
+padding:11px 18px;
+border-radius:7px
+}
+
+/* HERO */
+.hero{
+min-height:100vh;
+padding:125px 7% 70px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:center;
+background:
+radial-gradient(circle at 80% 25%,rgba(255,59,10,.28),transparent 32%),
+radial-gradient(circle at 20% 90%,rgba(255,106,0,.1),transparent 30%),
+#070707
+}
+.heroText{
+animation:slideLeft 1s ease
+}
+.badge{
+display:inline-block;
+padding:8px 15px;
+border:1px solid #444;
+border-radius:50px;
+color:#bbb;
+font-size:12px;
+margin-bottom:20px
+}
+.hero h1{
+font-size:clamp(50px,7vw,90px);
+line-height:.88;
+letter-spacing:-5px;
+text-transform:uppercase
+}
+.hero h1 span{
+color:var(--red);
+text-shadow:0 0 30px rgba(255,59,10,.25)
+}
+.hero p{
+color:#aaa;
+font-size:18px;
+line-height:1.7;
+max-width:600px;
+margin:25px 0
+}
+.buttons{
+display:flex;
+gap:12px;
+flex-wrap:wrap
+}
+.btn{
+padding:14px 22px;
+border-radius:8px;
+font-weight:bold;
+display:inline-block;
+transition:.3s
+}
+.primary{
+background:linear-gradient(135deg,var(--red),var(--orange))
+}
+.secondary{
+background:#151515;
+border:1px solid #444
+}
+.btn:hover{
+transform:translateY(-4px);
+box-shadow:0 12px 30px rgba(255,59,10,.2)
+}
+.rating{
+margin-top:28px;
+display:flex;
+align-items:center;
+gap:15px
+}
+.stars{
+color:#ffb000;
+font-size:23px;
+letter-spacing:3px
+}
+.rating small{color:#777}
+
+.heroImg{
+height:590px;
+border-radius:22px;
+overflow:hidden;
+border:1px solid #333;
+animation:slideRight 1.2s ease;
+box-shadow:0 25px 80px #000
+}
+.heroImg img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:1s
+}
+.heroImg:hover img{transform:scale(1.08)}
+
+/* SECTIONS */
+section{padding:100px 7%}
+.container{max-width:1200px;margin:auto}
+.sectionTitle{
+font-size:44px;
+text-transform:uppercase;
+margin-bottom:10px
+}
+.subtitle{
+color:#999;
+max-width:680px;
+line-height:1.7;
+margin-bottom:40px
+}
+
+/* STATS */
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px
+}
+.stat{
+padding:27px;
+background:#111;
+border:1px solid var(--line);
+border-radius:14px;
+transition:.4s
+}
+.stat:hover{
+transform:translateY(-8px);
+border-color:var(--red)
+}
+.stat h3{
+font-size:38px;
+color:var(--red)
+}
+.stat p{color:#888}
+
+/* PROGRAMS */
+.programs{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px
+}
+.program{
+min-height:250px;
+padding:30px;
+background:linear-gradient(145deg,#171717,#0c0c0c);
+border:1px solid #292929;
+border-radius:16px;
+position:relative;
+overflow:hidden;
+transition:.4s
+}
+.program:hover{
+transform:translateY(-10px);
+border-color:var(--red)
+}
+.program:after{
+content:"";
+position:absolute;
+width:130px;
+height:130px;
+right:-50px;
+bottom:-50px;
+background:var(--red);
+filter:blur(60px);
+opacity:.15
+}
+.programIcon{font-size:40px;margin-bottom:15px}
+.program h3{font-size:23px;margin-bottom:10px}
+.program p{color:#999;line-height:1.6}
+.program a{
+display:inline-block;
+margin-top:20px;
+color:var(--red);
+font-weight:bold
+}
+
+/* PRICING */
+.pricing{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px
+}
+.priceCard{
+background:#101010;
+border:1px solid #292929;
+border-radius:17px;
+padding:35px;
+position:relative;
+transition:.4s
+}
+.priceCard:hover{
+transform:translateY(-10px);
+border-color:var(--red)
+}
+.popular{
+border:2px solid var(--red);
+transform:scale(1.03)
+}
+.popular:hover{transform:scale(1.03) translateY(-8px)}
+.popularTag{
+position:absolute;
+top:-13px;
+left:50%;
+transform:translateX(-50%);
+background:var(--red);
+padding:6px 15px;
+border-radius:30px;
+font-size:12px;
+font-weight:bold
+}
+.priceCard h3{font-size:25px}
+.price{
+font-size:45px;
+font-weight:900;
+margin:15px 0;
+color:var(--red)
+}
+.price small{
+font-size:14px;
+color:#777
+}
+.featuresList{
+list-style:none;
+margin:25px 0
+}
+.featuresList li{
+padding:9px 0;
+color:#bbb;
+border-bottom:1px solid #1d1d1d
+}
+.featuresList li:before{
+content:"✓";
+color:#ff5a00;
+font-weight:bold;
+margin-right:10px
+}
+
+/* GALLERY */
+.gallery{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px
+}
+.galleryItem{
+height:330px;
+overflow:hidden;
+border-radius:14px;
+border:1px solid #292929;
+position:relative
+}
+.galleryItem img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.7s
+}
+.galleryItem:hover img{
+transform:scale(1.12);
+filter:brightness(.7)
+}
+
+/* REVIEW */
+.reviewBox{
+background:linear-gradient(135deg,#181818,#0c0c0c);
+border:1px solid #292929;
+border-radius:20px;
+padding:45px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:30px
+}
+.reviewBox p{
+color:#ccc;
+font-size:19px;
+max-width:750px;
+margin-top:15px
+}
+.score{
+font-size:75px;
+font-weight:1000;
+color:var(--red)
+}
+
+/* LEAD FORM */
+.lead{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+align-items:center
+}
+.leadInfo h2{font-size:48px}
+.leadInfo p{
+color:#999;
+line-height:1.7;
+margin:18px 0
+}
+.form{
+background:#111;
+border:1px solid #292929;
+padding:30px;
+border-radius:17px
+}
+.form input,.form select{
+width:100%;
+padding:15px;
+margin-bottom:13px;
+background:#090909;
+border:1px solid #333;
+border-radius:7px;
+color:white;
+outline:none
+}
+.form input:focus,.form select:focus{
+border-color:var(--red)
+}
+.form button{
+width:100%;
+border:0;
+padding:15px;
+border-radius:7px;
+color:white;
+font-weight:bold;
+cursor:pointer;
+background:linear-gradient(135deg,var(--red),var(--orange));
+transition:.3s
+}
+.form button:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 30px rgba(255,59,10,.3)
+}
+
+/* FAQ */
+.faq{
+max-width:850px
+}
+details{
+background:#111;
+border:1px solid #292929;
+border-radius:10px;
+margin-bottom:12px;
+padding:20px;
+transition:.3s
+}
+details:hover{border-color:var(--red)}
+summary{
+cursor:pointer;
+font-weight:bold
+}
+details p{
+color:#999;
+padding-top:15px;
+line-height:1.6
+}
+
+/* CONTACT */
+.contact{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px
+}
+.contactCard{
+background:#111;
+border:1px solid #292929;
+border-radius:15px;
+padding:30px
+}
+.contactCard h3{font-size:25px;margin-bottom:15px}
+.contactCard p{color:#999;margin:10px 0}
+.map{
+min-height:250px;
+border-radius:15px;
+border:1px solid #292929;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+background:
+repeating-linear-gradient(
+45deg,#111 0,#111 20px,#151515 20px,#151515 40px
+)
+}
+.map h3{font-size:30px;color:var(--red)}
+
+/* FOOTER */
+footer{
+border-top:1px solid #222;
+padding:35px 7%;
+color:#666;
+text-align:center
+}
+
+/* FLOATING BUTTONS */
+.floating{
+position:fixed;
+right:20px;
+bottom:20px;
+z-index:999;
+display:flex;
+flex-direction:column;
+gap:10px
+}
+.floatBtn{
+width:53px;
+height:53px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+box-shadow:0 8px 25px #000;
+transition:.3s
+}
+.floatBtn:hover{transform:scale(1.1)}
+.call{background:#18b957}
+.whatsapp{background:#25d366}
+
+/* ANIMATION */
+@keyframes slideLeft{
+from{opacity:0;transform:translateX(-70px)}
+to{opacity:1;transform:translateX(0)}
+}
+@keyframes slideRight{
+from{opacity:0;transform:translateX(70px)}
+to{opacity:1;transform:translateX(0)}
+}
+@keyframes reveal{
+from{opacity:0;transform:translateY(40px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+/* MOBILE */
+@media(max-width:800px){
+.navlinks{display:none}
+.hero{
+grid-template-columns:1fr;
+padding-top:115px
+}
+.heroImg{
+height:450px;
+order:-1
+}
+.stats,
+.programs,
+.pricing,
+.gallery,
+.contact,
+.lead{
+grid-template-columns:1fr
+}
+.popular{transform:none}
+.popular:hover{transform:translateY(-8px)}
+.galleryItem{height:380px}
+.reviewBox{
+flex-direction:column;
+align-items:flex-start
+}
+.sectionTitle{font-size:35px}
+.leadInfo h2{font-size:38px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+<div class="nav">
+
+<div class="logo">
+RESHAPE <span>FITNESS</span>
+</div>
+
+<div class="navlinks">
+<a href="#about">About</a>
+<a href="#programs">Programs</a>
+<a href="#plans">Plans</a>
+<a href="#gallery">Gallery</a>
+<a href="#reviews">Reviews</a>
+<a href="#contact" class="navbtn">JOIN NOW</a>
+</div>
+
+</div>
+</nav>
+
+
+<!-- HERO -->
+<header class="hero">
+
+<div class="heroText">
+
+<div class="badge">
+BALLIA • FITNESS • COMMUNITY
+</div>
+
+<h1>
+BUILD YOUR
+<br>
+<span>STRONGER</span>
+<br>
+SELF.
+</h1>
+
+<p>
+Welcome to <b>Reshape The Fitness Club</b> —
+train harder, become stronger and build
+a healthier lifestyle in a focused fitness
+environment in Ballia.
+</p>
+
+<div class="buttons">
+<a href="#trial" class="btn primary">🔥 BOOK FREE TRIAL</a>
+<a href="#plans" class="btn secondary">VIEW MEMBERSHIP</a>
+</div>
+
+<div class="rating">
+<div class="stars">★★★★★</div>
+<div>
+<b>4.8 / 5</b><br>
+<small>Based on 310 people</small>
+</div>
+</div>
+
+</div>
+
+<div class="heroImg">
+<img src="gym6.jpg" alt="Reshape Fitness Club">
+</div>
+
+</header>
+
+
+<!-- ABOUT -->
+<section id="about">
+<div class="container">
+
+<h2 class="sectionTitle">TRAIN WITH PURPOSE</h2>
+
+<p class="subtitle">
+Reshape The Fitness Club is designed for people
+who want to train consistently, build strength and
+make fitness part of their lifestyle.
+</p>
+
+<div class="stats">
+
+<div class="stat">
+<h3>4.8★</h3>
+<p>Gym Rating</p>
+</div>
+
+<div class="stat">
+<h3>310+</h3>
+<p>People Rated</p>
+</div>
+
+<div class="stat">
+<h3>6+</h3>
+<p>Gym Photos</p>
+</div>
+
+<div class="stat">
+<h3>100%</h3>
+<p>Training Focus</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- PROGRAMS -->
+<section id="programs">
+<div class="container">
+
+<h2 class="sectionTitle">TRAINING PROGRAMS</h2>
+
+<p class="subtitle">
+Choose your training goal and start working toward it.
+</p>
+
+<div class="programs">
+
+<div class="program">
+<div class="programIcon">🏋️</div>
+<h3>Strength Training</h3>
+<p>
+Build strength with structured weight training
+and progressive workouts.
+</p>
+<a href="#trial">START →</a>
+</div>
+
+<div class="program">
+<div class="programIcon">🔥</div>
+<h3>Fat Loss</h3>
+<p>
+Improve fitness and conditioning with
+consistent training and activity.
+</p>
+<a href="#trial">START →</a>
+</div>
+
+<div class="program">
+<div class="programIcon">💪</div>
+<h3>Muscle Building</h3>
+<p>
+Train consistently and work toward
+your muscle-building goals.
+</p>
+<a href="#trial">START →</a>
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- PLANS -->
+<section id="plans">
+<div class="container">
+
+<h2 class="sectionTitle">MEMBERSHIP PLANS</h2>
+
+<p class="subtitle">
+Ask the gym for current pricing and membership offers.
+The prices below are placeholders until the actual gym
+prices are added.
+</p>
+
+<div class="pricing">
+
+<div class="priceCard">
+
+<h3>STARTER</h3>
+
+<div class="price">
+₹— <small>/ month</small>
+</div>
+
+<ul class="featuresList">
+<li>Gym Access</li>
+<li>Workout Area</li>
+<li>Basic Equipment</li>
+<li>Fitness Community</li>
+</ul>
+
+<a href="#trial" class="btn secondary">
+ENQUIRE NOW
+</a>
+
+</div>
+
+
+<div class="priceCard popular">
+
+<div class="popularTag">
+MOST POPULAR
+</div>
+
+<h3>PRO</h3>
+
+<div class="price">
+₹— <small>/ month</small>
+</div>
+
+<ul class="featuresList">
+<li>Full Gym Access</li>
+<li>All Equipment</li>
+<li>Training Support</li>
+<li>Fitness Guidance</li>
+</ul>
+
+<a href="#trial" class="btn primary">
+CHOOSE PRO
+</a>
+
+</div>
+
+
+<div class="priceCard">
+
+<h3>PREMIUM</h3>
+
+<div class="price">
+₹— <small>/ month</small>
+</div>
+
+<ul class="featuresList">
+<li>Full Gym Access</li>
+<li>Personal Guidance</li>
+<li>Priority Support</li>
+<li>Premium Experience</li>
+</ul>
+
+<a href="#trial" class="btn secondary">
+ENQUIRE NOW
+</a>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- GALLERY -->
+<section id="gallery">
+<div class="container">
+
+<h2 class="sectionTitle">INSIDE RESHAPE</h2>
+
+<p class="subtitle">
+Real gym photos and training atmosphere.
+</p>
+
+<div class="gallery">
+
+<div class="galleryItem">
+<img src="gym1.jpg" alt="Reshape Fitness">
+</div>
+
+<div class="galleryItem">
+<img src="gym2.jpg" alt="Reshape Fitness">
+</div>
+
+<div class="galleryItem">
+<img src="gym4.jpg" alt="Reshape Fitness">
+</div>
+
+<div class="galleryItem">
+<img src="gym5.jpg" alt="Reshape Fitness">
+</div>
+
+<div class="galleryItem">
+<img src="gym6.jpg" alt="Reshape Fitness">
+</div>
+
+<div class="galleryItem">
+<img src="hym3.jpg" alt="Reshape Fitness">
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- REVIEWS -->
+<section id="reviews">
+<div class="container">
+
+<div class="reviewBox">
+
+<div>
+<div class="stars">★★★★★</div>
+
+<p>
+Rated <b>4.8 out of 5</b> by
+<b>310 people</b>.
+</p>
+
+<p style="color:#666">
+Reshape The Fitness Club • Ballia
+</p>
+</div>
+
+<div class="score">4.8</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- FREE TRIAL / LEAD GENERATION -->
+<section id="trial">
+<div class="container">
+
+<div class="lead">
+
+<div class="leadInfo">
+
+<h2>
+READY TO
+<span style="color:#ff3b0a">RESHAPE?</span>
+</h2>
+
+<p>
+Want to start training? Send your details and
+the gym can contact you about membership,
+trial sessions and available plans.
+</p>
+
+<div class="buttons">
+<a href="#plans" class="btn primary">
+VIEW PLANS
+</a>
+
+<a href="#contact" class="btn secondary">
+CONTACT GYM
+</a>
+</div>
+
+</div>
+
+
+<div class="form">
+
+<form onsubmit="submitForm(event)">
+
+<input
+type="text"
+id="name"
+placeholder="Your Name"
+required
+>
+
+<input
+type="tel"
+id="phone"
+placeholder="Phone Number"
+required
+>
+
+<select id="goal" required>
+<option value="">Choose Your Goal</option>
+<option>Muscle Building</option>
+<option>Strength Training</option>
+<option>Fat Loss</option>
+<option>General Fitness</option>
+</select>
+
+<button type="submit">
+🔥 REQUEST FREE TRIAL
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- FAQ -->
+<section>
+
+<div class="container">
+
+<h2 class="sectionTitle">
+FAQ
+</h2>
+
+<p class="subtitle">
+Common questions before joining the gym.
+</p>
+
+<div class="faq">
+
+<details>
+<summary>Do I need previous gym experience?</summary>
+<p>
+No. Beginners can ask the gym team about
+suitable training and guidance.
+</p>
+</details>
+
+<details>
+<summary>Can I visit before joining?</summary>
+<p>
+Use the contact details or free-trial form
+to ask about a visit or trial session.
+</p>
+</details>
+
+<details>
+<summary>What membership plans are available?</summary>
+<p>
+Membership options and prices can be added
+here once the gym confirms its current plans.
+</p>
+</details>
+
+<details>
+<summary>Where is Reshape Fitness located?</summary>
+<p>
+Reshape The Fitness Club is in Ballia,
+Uttar Pradesh, India.
+</p>
+</details>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact">
+
+<div class="container">
+
+<h2 class="sectionTitle">
+CONTACT RESHAPE
+</h2>
+
+<p class="subtitle">
+Ready to start? Contact the gym for current
+membership prices, timings and location details.
+</p>
+
+<div class="contact">
+
+<div class="contactCard">
+
+<h3>
+Reshape The Fitness Club
+</h3>
+
+<p>📍 Ballia, Uttar Pradesh, India</p>
+
+<p>⭐ 4.8 Rating • 310 People</p>
+
+<p>📞 Gym phone number — add actual number</p>
+
+<br>
+
+<div class="buttons">
+
+<a href="tel:+91" class="btn primary">
+📞 CALL
+</a>
+
+<a href="https://wa.me/91XXXXXXXXXX"
+class="btn secondary">
+💬 WHATSAPP
+</a>
+
+</div>
+
+</div>
+
+
+<div class="map">
+
+<div>
+
+<h3>📍 BALLIA</h3>
+
+<p style="color:#777">
+Reshape The Fitness Club
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FLOATING BUTTONS -->
+
+<div class="floating">
+
+<a href="tel:+91" class="floatBtn call">
+☎
+</a>
+
+<a href="https://wa.me/91XXXXXXXXXX"
+class="floatBtn whatsapp">
+☘
+</a>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+© 2026 Reshape The Fitness Club • Ballia
+
+<br><br>
+
+Made for a stronger community 💪
+
+</footer>
+
+
+<script>
+
+function submitForm(event){
+
+event.preventDefault();
+
+const name =
+document.getElementById("name").value;
+
+const phone =
+document.getElementById("phone").value;
+
+const goal =
+document.getElementById("goal").value;
+
+alert(
+"Thanks " + name +
+"! Your free-trial request has been received.\\n\\n" +
+"Goal: " + goal +
+"\\nPhone: " + phone
+);
+
+}
+
+</script>
+
+</body>
+</html>
